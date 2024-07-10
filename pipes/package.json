@@ -1,0 +1,11 @@
+{
+  "name": "pipe-system",
+  "main": "pipe-system.js",
+  "scripts": {
+    "exec-ts": "tsc ./pipe-system.ts && node test.js",
+    "exec-js": "node ./simplified.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10"
+  }
+}
