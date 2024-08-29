@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <header>
+
+  </header>
+  <body>
+    <h1>Dominic Aquilina's Regular Expression Library</h1>
+
+    <p>
+        Check console for validity
+    </p>
+
+    <script type="text/javascript" src="./definitions/ipv4.js"></script> 
+    <script type="text/javascript" src="./definitions/ipv6.js"></script> 
+    <script type="text/javascript" src="./util/regex-map.js"></script> 
+    <script type="text/javascript">
+      const map = new RegexMap();
+
+      console.log(map.testAll());
+
+      map.dumpAll();
+    </script> 
+  </body>
+</html>
