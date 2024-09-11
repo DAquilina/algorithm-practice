@@ -1,3 +1,5 @@
+// https://regex101.com/r/3vVAiA/1
+
 window.regexSet = window.regexSet ?? [];
 
 window.regexSet.push({
