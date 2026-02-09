@@ -24,7 +24,7 @@ function recurse(nums: Array<number>, target: number): undefined | Array<number>
             return (num + arr1.length);
         });
     }
-    
+
     result = recurse(arr1, target);
 
     if (result) {
