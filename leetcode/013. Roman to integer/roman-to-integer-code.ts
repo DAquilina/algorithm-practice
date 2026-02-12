@@ -1,4 +1,4 @@
-const valueMap = {
+const valueMap: { [key: string]: number } = {
     "I": 1,
     "IV": 4,
     "V": 5,
