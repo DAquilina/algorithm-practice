@@ -8,6 +8,7 @@ class RegexMap {
 
       this._regexMap[regex.name] = {
         ...regex,
+        description: regex.description,
         expression: regex.regexp,
         expressionFromString: new RegExp(regex.regexpString, regex.intendedFlags),
         regexp: undefined
@@ -26,6 +27,7 @@ class RegexMap {
 
       console.log("----------");
       console.log(`${name}: ${regex.regexpString}`);
+      console.log(regex.description);
       console.log("Expected Matches:", regex.expectedMatches);
       console.log("Expected Mismatches:", regex.expectedMismatches);
       console.log("----------");
@@ -48,6 +50,9 @@ class RegexMap {
     [
       ...regex.expectedMatches, ...regex.expectedMismatches
     ].forEach((str) => {
+
+      regex.expression.lastIndex = 0;
+      regex.expressionFromString.lastIndex = 0;
 
       if (regex.expression.test(str) && regex.expressionFromString.test(str)) {
         matchCount++;
