@@ -6,7 +6,7 @@ window.regexSet.push({
   name: "phone-na",
   description: "Matches any variation of the North American phone number. Should correctly capture the country code, area code, and both segments of the target number regardless of punctuation and whitespace",
   regexp: /^ *(?:\+?(?<countrycode>[0-9]{1,3}))?[.\/\-_ ]*\(?(?<areacode>[0-9]{3})?\)?[.\/\-_ ]*(?<phone1>[0-9]{3})[.\/\-_ ]*(?<phone2>[0-9]{4}) *$/,
-  regexpString: "^ *(?:\\+?(?<countrycode>[0-9]{1,3}))?[.\\/\\-_ ]*\\(?(?<areacode>[0-9]{3})?\\)?[.\\/\\-_ ]*(?<phone1>[0-9]{3})[.\\/\\-_ ]*(?<phone2>[0-9]{4}) *$",
+  regexpString: "\^\ \*\(\?:\\\+\?\(\?<countrycode>\[0-9]\{1,3}\)\)\?\[\.\\/\\-_\ ]\*\\\(\?\(\?<areacode>\[0-9]\{3}\)\?\\\)\?\[\.\\/\\-_\ ]\*\(\?<phone1>\[0-9]\{3}\)\[\.\\/\\-_\ ]\*\(\?<phone2>\[0-9]\{4}\)\ \*\$",
   intendedFlags: "",
   notes: [
     "Many phone formats end up being some variation of a country code followed by 10 numbers even if the individual components differ. As a result, leaving out that formatting should allow any phone number to be accepted by the pattern, though the capture groups may not follow the expected paradigm"

@@ -4,8 +4,9 @@ window.regexSet = window.regexSet ?? [];
 
 window.regexSet.push({
   name: "ipv6",
-  regexp: /^(?:([0-9a-f]{0,4}):){7}(?:([0-9a-f]{1,4}))(?:\/(?:(?:6[0-4])|(?:[3-5][0-9])|(?:2[4-9])))?$/i,
-  regexpString: "^(?:([0-9a-f]{0,4}):){7}(?:([0-9a-f]{1,4}))(?:\/(?:(?:6[0-4])|(?:[3-5][0-9])|(?:2[4-9])))?$",
+  description: "Matches all valid IPv6 addresses, though it does not group the individual components so that it can use the repeated group syntax.",
+  regexp: /^ *(?:([0-9a-f]{0,4}):){7}(?:([0-9a-f]{1,4}))(?:\/(?:(?:6[0-4])|(?:[3-5][0-9])|(?:2[4-9])))?$ */i,
+  regexpString: "\^\ \*\(\?:\(\[0-9a-f]\{0,4}\):\)\{7}\(\?:\(\[0-9a-f]\{1,4}\)\)\(\?:\\/\(\?:\(\?:6\[0-4]\)\|\(\?:\[3-5]\[0-9]\)\|\(\?:2\[4-9]\)\)\)\?\$\ \*",
   intendedFlags: "i",
   expectedMatches: [
     "1990:0db8:85a3:0:0:8A2E:0370:7334",

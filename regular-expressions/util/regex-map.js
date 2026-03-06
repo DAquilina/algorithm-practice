@@ -45,21 +45,25 @@ class RegexMap {
 
     const regex = this.get(name);
 
-    let matchCount = 0;
-
-    [
-      ...regex.expectedMatches, ...regex.expectedMismatches
-    ].forEach((str) => {
-
+    for (const input of regex.expectedMatches) {
       regex.expression.lastIndex = 0;
       regex.expressionFromString.lastIndex = 0;
 
-      if (regex.expression.test(str) && regex.expressionFromString.test(str)) {
-        matchCount++;
+      if (!regex.expression.test(input) || !regex.expressionFromString.test(input)) {
+        return false;
       }
-    });
+    }
 
-    return (matchCount === regex.expectedMatches.length);
+    for (const input of regex.expectedMismatches) {
+      regex.expression.lastIndex = 0;
+      regex.expressionFromString.lastIndex = 0;
+
+      if (regex.expression.test(input) || regex.expressionFromString.test(input)) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
 

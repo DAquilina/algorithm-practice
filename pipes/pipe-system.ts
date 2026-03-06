@@ -81,8 +81,8 @@ export function getConnectedSinks(filePath: string): string {
         Left,
         Right
     }
-    
-    
+
+
     enum Symbol {
         ElbowDL = "╗",
         ElbowDR = "╔",
@@ -99,8 +99,9 @@ export function getConnectedSinks(filePath: string): string {
 
 
     const OPEN = "1";
-    
-    
+
+
+    // TODO: save space by using bitwise operations on a single number instead of a string
     const PIPE_OPENINGS = new Map<Symbol, string>(
         [
             [Symbol.StraightH, "0011"],
@@ -115,8 +116,8 @@ export function getConnectedSinks(filePath: string): string {
             [Symbol.TeeU, "1011"]
         ]
     );
-    
-    
+
+
     interface INode {
         connectedNodes: Array<INode>,
         symbol: Symbol | Letter;
@@ -127,9 +128,9 @@ export function getConnectedSinks(filePath: string): string {
 
     class PipeNetwork {
 
-        nodes: Array<Array<INode>>;
+        nodes: Array<Array<INode>> = new Array<Array<INode>>();
 
-        source: INode;
+        source: INode | undefined;
 
         sinkMap: Map<Letter, INode>;
 
@@ -143,7 +144,7 @@ export function getConnectedSinks(filePath: string): string {
 
 
         public assert(levels: Array<0 | 1 | 2>): void {
-    
+
             if (levels.includes(0)) {
                 this.nodes?.forEach((row: Array<INode>) => {
             
@@ -156,14 +157,14 @@ export function getConnectedSinks(filePath: string): string {
 
             if (levels.includes(1)) {
                 console.log("-----");
-    
+
                 this.nodes?.forEach((row: Array<INode>) => {
-    
+
                     row.forEach((node: INode) => {
-    
+
                         console.log("~~", node.x, node.y, "~~");
                         console.log("Connected:", node.connectedNodes.map((connectedNode: INode) => {
-    
+
                             return `(${connectedNode.x}, ${connectedNode.y})`;
                         }));
                     });
@@ -305,14 +306,14 @@ export function getConnectedSinks(filePath: string): string {
                     x: pipe[1],
                     y: pipe[2]
                 };
-        
+
                 if (currentNode.symbol === Symbol.Source) {
                     this.source = currentNode;
                 }
                 else if (/[A-Z]/.test(currentNode.symbol)) {
                     this.sinkMap.set(currentNode.symbol as Letter, currentNode);
                 }
-        
+
                 if (!this.nodes[currentNode.y]) {
                     this.nodes[currentNode.y] = new Array<INode>();
                 }
@@ -323,21 +324,21 @@ export function getConnectedSinks(filePath: string): string {
             this._connectPipes();
         }
     }
-    
-    
+
+
     function getPipeData(): Array<PipeDefinition> {
-    
+
         const data = fs.readFileSync(
             filePath, 
             { encoding: 'utf8', flag: 'r' }
         );
-    
+
         let parsedData: Array<string> = data.split(/\n/g);
-    
+
         return parsedData.map((row: string) => {
-    
+
             const rowData = row.split(" ");
-    
+
             return [rowData[0], +rowData[1], +rowData[2]];
         });
     }
